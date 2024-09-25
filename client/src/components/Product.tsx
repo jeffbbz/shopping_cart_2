@@ -1,5 +1,11 @@
-export const Product = ({ title, quantity, price }) => {
+interface ProductProps {
+  _id: string,
+  title: string,
+  quantity: number,
+  price: number
+}
 
+export const Product = ({ _id, title, quantity, price }: ProductProps) => {
   return (
     <li className="product">
       <div className="product-details">

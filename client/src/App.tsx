@@ -5,12 +5,11 @@ import { useState } from 'react';
 import { mockProducts } from '../mockData/data.js';
 import { ProductList } from '../src/components/ProductList';
 
-
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
+    <div id='app'>
       <h1>The Shop!</h1>
       <div className='cart'>
         <h2>Your Cart</h2>
@@ -19,7 +18,7 @@ function App() {
         <button className='checkout' disabled>Checkout</button>
       </div>
 
-      {/* <ProductList products={ mockProducts }/> */}
+      <ProductList products={ mockProducts }/>
     </div>
   )
 }
