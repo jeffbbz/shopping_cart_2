@@ -4,9 +4,14 @@ import './assets/index.css';
 import React from 'react';
 import { ProductList } from '../src/components/ProductList';
 import ShoppingCart from '../src/components/ShoppingCart';
-import { mockProducts } from '../mockData/data.js';
 import ProductForm from './components/ProductForm';
 import axios from "axios";
+
+interface NewProduct {
+  title: string,
+  price: number,
+  quantity: number
+}
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -15,29 +20,32 @@ function App() {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get("/api/products");
-        return data
+        setProducts(data);
       } catch (error) {
         console.error(error);
       }
     }
     fetchProducts();
-  }, [])// this is no bueno 
-  // No i think this is okay. he is putting data here
-  // oh right
-  // but isn't products an array?  I thought he said no objects -> hash or arrays
-  // i ate a little ice cream for lunch and now my stomach is not happy 
-// lol
-// i hope you were listening cause i was away lol
-// haha sort of
-  const handleAddProduct = () => {
+  }, [products.length])
 
+
+  const handleAddProduct = async ({title, price, quantity}: NewProduct) => {
+    try{
+      const {data} = await axios.post('/api/products', {title, price, quantity});
+      // console.log(data);
+      setProducts((prevState) => prevState.concat(data));
+      console.log(products)
+    } catch(error) {
+      console.error(error)
+    }
+  
   }
 
   return (
     <div id='app'>
       <ShoppingCart />
       <main>
-        <ProductList products={mockProducts}/>
+        <ProductList products={products}/>
         <ProductForm onAddProduct={handleAddProduct}/>
       </main>
     </div>
