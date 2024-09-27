@@ -7,8 +7,7 @@ interface Product {
   price: number
 }
 
-export const ProductList = ({ products }: { products: Product[] }) => {
-  console.log(products)
+export const ProductList = ({ products, onDeleteProduct, onEditProduct }) => {
     return ( 
       <div className='product-listing'>
         <h2>Products</h2>
@@ -19,7 +18,9 @@ export const ProductList = ({ products }: { products: Product[] }) => {
             _id={ product._id }
             title={ product.title }
             quantity={ product.quantity }
-            price={ product.price } />
+            price={ product.price } 
+            onDeleteProduct={onDeleteProduct}
+            onEditProduct={onEditProduct}/>
           })}
         </ul>
       </div>

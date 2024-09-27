@@ -1,12 +1,10 @@
 import React from "react";
 
-const ProductForm = ({ onAddProduct }) => {
+const ProductAddForm = ({ onAddProduct, onCancelAddProduct }) => {
   const [title, setTitle] = React.useState("");
   const [price, setPrice] = React.useState(0);
   const [quantity, setQuantity] = React.useState(0);
-
-  console.log(title, price, quantity)
-
+  
   return (
     <div className="add-form">
       <form action="" onSubmit={(e) => {
@@ -48,12 +46,12 @@ const ProductForm = ({ onAddProduct }) => {
         </div>
         <div className="actions form-actions">
           <button type="submit">Add</button>
-          <button type="button">Cancel</button>
+          <button type="button" onClick={() => onCancelAddProduct()}>Cancel</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default ProductForm
+export default ProductAddForm
 
