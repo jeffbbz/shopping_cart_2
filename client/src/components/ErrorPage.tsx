@@ -1,7 +1,7 @@
 export const ErrorPage = () => {
   return (
     <div>
-      <img src='../public/btsError.png' />
+      <img src='../btsError.png' />
     </div>
   )
 }

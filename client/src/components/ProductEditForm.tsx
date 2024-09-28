@@ -1,43 +1,61 @@
+import React from "react";
 
-
-export const ProductEditForm = () => {
+export const ProductEditForm = ({onEditProduct, onCancelEditProduct, id, title, price, quantity}) => {
+  const [newTitle, setNewTitle] = React.useState(title);
+  const [newPrice, setNewPrice] = React.useState(price);
+  const [newQuantity, setNewQuantity] = React.useState(quantity);
+  
   return (
-    <div class="edit-form">
+    <div className="edit-form">
       <h3>Edit Product</h3>
-      <form>
-        <div class="input-group">
-          <label for="product-name">Product Name</label>
+      <form action="" onSubmit={(e) => {
+        e.preventDefault();
+        const editedProduct = {
+          _id: id, 
+          title: newTitle, 
+          price: newPrice, 
+          quantity: newQuantity
+        }
+
+        onEditProduct(editedProduct);
+        onCancelEditProduct();
+      }}>
+        <div className="input-group">
+          <label htmlFor="product-name">Product Name</label>
           <input
             type="text"
             id="product-name"
-            value="Apple 10.5-Inch iPad Pro"
+            value={newTitle}
             aria-label="Product Name"
+            onChange={(e) => setNewTitle(e.target.value)}
           />
         </div>
   
-        <div class="input-group">
-          <label for="product-price">Price</label>
+        <div className="input-group">
+          <label htmlFor="product-price">Price</label>
           <input
             type="number"
             id="product-price"
-            value="649.99"
+            value={newPrice}
             aria-label="Product Price"
+            onChange={(e) => setNewPrice(Number(e.target.value))}
           />
         </div>
   
-        <div class="input-group">
-          <label for="product-quantity">Quantity</label>
+        <div className="input-group">
+          <label htmlFor="product-quantity">Quantity</label>
           <input
             type="number"
             id="product-quantity"
-            value="2"
+            value={newQuantity}
             aria-label="Product Quantity"
+            onChange={(e) => setNewQuantity(Number(e.target.value))}
           />
         </div>
   
-        <div class="actions form-actions">
+        <div className="actions form-actions">
           <button type="submit">Update</button>
-          <button type="button">Cancel</button>
+          <button type="button" onClick={() => onCancelEditProduct()}>Cancel</button>
         </div>
       </form>
     </div>

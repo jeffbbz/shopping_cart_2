@@ -1,18 +1,14 @@
 import { Product } from "./Product"
+import { ProductSchema } from "../services/products"
+import { ProductListProps } from "../types"
 
-interface Product {
-  _id: string,
-  title: string,
-  quantity: number,
-  price: number
-}
+export const ProductList: React.FC<ProductListProps> = ({ products, onDeleteProduct, onEditProduct, onAddToCart }) => {
 
-export const ProductList = ({ products, onDeleteProduct, onEditProduct }) => {
-    return ( 
+  return ( 
       <div className='product-listing'>
         <h2>Products</h2>
         <ul className='product-list'>
-          {products.map((product) => {
+          {products.map((product: ProductSchema) => {
             return <Product
             key={ product._id }
             _id={ product._id }
@@ -20,7 +16,8 @@ export const ProductList = ({ products, onDeleteProduct, onEditProduct }) => {
             quantity={ product.quantity }
             price={ product.price } 
             onDeleteProduct={onDeleteProduct}
-            onEditProduct={onEditProduct}/>
+            onEditProduct={onEditProduct}
+            onAddToCart={onAddToCart}/>
           })}
         </ul>
       </div>
