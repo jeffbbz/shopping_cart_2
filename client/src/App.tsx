@@ -21,6 +21,7 @@ function App() {
     const fetchProducts = async () => {
       try {
         const data = await getProducts();
+        console.log(data)
         setProducts(data);
       } catch (error) {
         if (error instanceof ZodError) {
@@ -37,6 +38,7 @@ function App() {
     const fetchCartItems = async () => {
       try {
         const prevCartItems: ProductSchema[] = await getCartItems();
+        // Change this type later
         setCartItems(prevCartItems);
       } catch (error) {
         if (error instanceof ZodError) {
@@ -116,7 +118,7 @@ function App() {
         }
       })
       setProducts(updatedProducts)
-
+      console.log(cartItems)
       if (cartItems.length !== 0) {
         let shouldAdd;
         const updatedCartItems = cartItems.map(prod => {

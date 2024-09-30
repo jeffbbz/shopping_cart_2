@@ -4,6 +4,7 @@ import { ShoppingCartProps } from "../types/index.ts";
 
 const ShoppingCart: React.FC<ShoppingCartProps> = ({ cartItems, onCheckout }) => {
   let grandTotal = 0;
+  console.log(cartItems)
   
   return (
     <header>
