@@ -118,10 +118,10 @@ function App() {
       setProducts(updatedProducts)
 
       if (cartItems.length !== 0) {
-        let shouldNotAdd;
+        let shouldAdd;
         const updatedCartItems = cartItems.map(prod => {
           if (prod._id === item._id) {
-            shouldNotAdd = true;
+            shouldAdd = true;
             return item;
           } else {
             return prod;
@@ -129,9 +129,10 @@ function App() {
         })
 
         setCartItems(updatedCartItems)
-        if (!shouldNotAdd) {
+        if (!shouldAdd) {
           setCartItems(cartItems.concat(item))
         }
+
       } else {
         setCartItems(cartItems.concat(item))
       }
